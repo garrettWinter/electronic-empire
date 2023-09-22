@@ -1,0 +1,30 @@
+[
+    {
+        "productId": 1,
+        "productName": "75 inch TV",
+        "productPrice": 4321.99,
+        "productImage": "image1",
+        "ProductDescription": "A huge 4k TV"
+    },
+    {
+        "productId": 2,
+        "productName": "PS5",
+        "productPrice": 499.99,
+        "productImage": "image2",
+        "ProductDescription": "Shinny New PS5"
+    },
+    {
+        "productId": 3,
+        "productName": "2TB SSD",
+        "productPrice": 169.99,
+        "productImage": "image3",
+        "ProductDescription": "New harddrive for the win!"
+    },
+    {
+        "productId": 4,
+        "productName": "Cell Phone",
+        "productPrice": 1299.99,
+        "productImage": "image4",
+        "ProductDescription": "Brand new phone, but same as the last version."
+    }
+]
