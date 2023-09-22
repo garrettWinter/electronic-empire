@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  userId    String   @id @default(uuid())
+  userName  String
+  password  String
+  orders    Order[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Order {
+  orderId Int @id @default(autoincrement())
+
+  //Validate 1 to many relationship below to user table
+  purchaser  User            @relation(fields: [userId], references: [userId])
+  userId     String
+  //Validate 1 to many relationship above to user table
+  lineItem   OrderLineItem[]
+  orderTotal Decimal         @db.Decimal(10, 2) //This will limit the order total to be under  9,999,999,999.99
+  orderDate  DateTime        @default(now())
+}
+
+model OrderLineItem {
+  orderLineItemId Int @id @default(autoincrement())
+
+  //Validate 1 to many relationship below to order table
+  newOrder Order @relation(fields: [orderId], references: [orderId])
+  orderId  Int
+  //Validate 1 to many relationship below to order table
+
+  //Validate 1 to many relationship below to product table
+  product   Product @relation(fields: [productId], references: [productId])
+  productId Int
+  //Validate 1 to many relationship below to product  table
+
+  qty       Int
+  linePrice Decimal @db.Decimal(10, 2) //This will limit the line total to be under  9,999,999,999.99
+}
+
+model Product {
+  productId          Int             @id @default(autoincrement())
+  productName        String
+  productPrice       Decimal         @db.Decimal(10, 2) //This will limit the product price to be under  9,999,999,999.99
+  productImage       String
+  ProductDescription String          @db.VarChar(4000)
+  lineItems          OrderLineItem[] /// IS THIS CORRECT??? DOES THIS SHOW IN TABLE?
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+}
