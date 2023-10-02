@@ -12,7 +12,7 @@ datasource db {
 
 model User {
   userId    String   @id @default(uuid())
-  userName  String
+  username  String   @unique
   password  String
   orders    Order[]
   createdAt DateTime @default(now())
