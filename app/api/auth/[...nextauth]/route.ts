@@ -4,15 +4,15 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from '@/app/lib/prisma';
 import { Adapter } from "next-auth/adapters";
 import { User } from "@prisma/client";
-import { AdapterUser } from "next-auth/adapters";
 
 
 const handler = NextAuth({
-  adapter: PrismaAdapter(prisma) as Adapter,
+  // *** ISSUE -- The below adapter does not work when uncommented, however this is throught to be needed for custom session variables. However, session.user is empty.
+  // adapter: PrismaAdapter(prisma) as Adapter,
   providers: [
     CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
-      name: "Credentials",
+      name: "account details",
       // `credentials` is used to generate a form on the sign in page.
       // You can specify which fields should be submitted, by adding keys to the `credentials` object.
       // e.g. domain, username, password, 2FA token, etc.
@@ -22,7 +22,6 @@ const handler = NextAuth({
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
-        // Add logic here to look up the user from the credentials supplied
         const res = await fetch("http://localhost:3000/api/login", {
           method: "POST",
           headers: {
@@ -49,12 +48,16 @@ const handler = NextAuth({
     })
   ],
   callbacks: {
+    //Attempting to add custom variables to the session.
     session({ session, user }) {
-      session.user.id = user.id;
-      session.user.username = (user as User).username;
+      if (user) {
+        session.user.userId = (user as User).userId;
+        session.user.username = (user as User).username;
+        console.log(session)
+      }
       return session;
     }
   }
 });
 
-export { handler as GET, handler as POST };
+export { handler as GET, handler as POST }; 

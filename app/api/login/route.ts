@@ -15,10 +15,8 @@ export async function POST(request: Request) {
             username: body.username,
         }
     })
-    console.log(user);
     if (user && (await bcrypt.compare(body.password, user.password))) {
         const { password, ...userWithoutPass } = user
-        console.log(password);
         console.log(userWithoutPass);
         return new Response(JSON.stringify(userWithoutPass));
     } else return new Response(JSON.stringify(null))
