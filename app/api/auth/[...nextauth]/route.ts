@@ -12,7 +12,7 @@ const handler = NextAuth({
   providers: [
     CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
-      name: "account details",
+      name: "User Name / Password",
       // `credentials` is used to generate a form on the sign in page.
       // You can specify which fields should be submitted, by adding keys to the `credentials` object.
       // e.g. domain, username, password, 2FA token, etc.
@@ -34,6 +34,7 @@ const handler = NextAuth({
         })
 
         const user = await res.json();
+        console.log('User captured in authorize call:', user);
 
         if (user) {
           // Any object returned will be saved in `user` property of the JWT
@@ -47,13 +48,24 @@ const handler = NextAuth({
       }
     })
   ],
+   // Need to uncomment the below pages to when ready to create custom pages.
+   pages: {
+    // signIn: '/auth/signin',
+    // signOut: '/auth/signout',
+    // error: '/auth/error', // Error code passed in query string as ?error=
+    // verifyRequest: '/auth/verify-request', // (used for check email message)
+    // newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
+  },
   callbacks: {
     //Attempting to add custom variables to the session.
     session({ session, user }) {
+      console.log('User data passed into session', user);
       if (user) {
+        console.log('Pre-Setting user properties:', user);
+        session.user.test = "test";
         session.user.userId = (user as User).userId;
         session.user.username = (user as User).username;
-        console.log(session)
+        console.log('Post-Setting user properties:', user);
       }
       return session;
     }
