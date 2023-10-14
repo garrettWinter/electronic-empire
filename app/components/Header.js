@@ -1,5 +1,6 @@
 import { wrap } from "module";
 import Link from "next/link";
+import SigninButton from "./SigninButton";
 
 
 import { useRouter } from 'next/navigation'
@@ -47,7 +48,7 @@ export default async function Header() {
             fontSize: 'large',
           }}><a href="http://localhost:3000/contact" >Contact US</a></li>
         </ul>
-
+        <SigninButton />
       </nav>
     </header >
   );

@@ -1,12 +1,12 @@
 [
     {
         "userId": "75ec0d9c-01e6-418a-8c85-fd74db6a6f7h",
-        "userName": "test1",
-        "password": "password1"
+        "username": "test1",
+        "password": "$2b$10$BXP9OjKiDuZ9hWcO0TSSwO6qSB3.GH8eycSlZL/AyZwLzUH.4/E1q"
     },
     {
         "userId": "2d1ea2e5-3017-4247-b934-16878938e22h",
-        "userName": "test2",
-        "password": "password2"
+        "username": "test2",
+        "password": "$2b$10$BXP9OjKiDuZ9hWcO0TSSwO6qSB3.GH8eycSlZL/AyZwLzUH.4/E1q"
     }
 ]
