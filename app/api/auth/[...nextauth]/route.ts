@@ -48,8 +48,8 @@ const handler = NextAuth({
       }
     })
   ],
-   // Need to uncomment the below pages to when ready to create custom pages.
-   pages: {
+  // Need to uncomment the below pages to when ready to create custom pages.
+  pages: {
     // signIn: '/auth/signin',
     // signOut: '/auth/signout',
     // error: '/auth/error', // Error code passed in query string as ?error=
@@ -59,7 +59,8 @@ const handler = NextAuth({
   callbacks: {
     //Attempting to add custom variables to the session.
     session({ session, user }) {
-      console.log('User data passed into session', user);
+      console.log('In session callback. User data:', user);
+      console.log('In session callback. Session data', session);
       if (user) {
         console.log('Pre-Setting user properties:', user);
         session.user.test = "test";
