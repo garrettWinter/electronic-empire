@@ -7,6 +7,7 @@ declare module 'next-auth' {
         password: string;
         createdAt: Date;
         updatedAt: Date;
+        accessToken: string;
         //TODO: Remove below once session is properly working.
         test: string;
     }

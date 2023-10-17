@@ -2,13 +2,12 @@ import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from '@/app/lib/prisma';
-import { Adapter } from "next-auth/adapters";
 import { User } from "@prisma/client";
 
 
 const handler = NextAuth({
   // *** ISSUE -- The below adapter does not work when uncommented, however this is throught to be needed for custom session variables. However, session.user is empty.
-  // adapter: PrismaAdapter(prisma) as Adapter,
+  // adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
@@ -57,8 +56,11 @@ const handler = NextAuth({
     // newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
   },
   callbacks: {
+    async jwt({ token, user }) {
+      return { ...token, ...user };
+    },
     //Attempting to add custom variables to the session.
-    session({ session, user }) {
+    async session({ session, user, token }) {
       console.log('In session callback. User data:', user);
       console.log('In session callback. Session data', session);
       if (user) {
@@ -66,6 +68,7 @@ const handler = NextAuth({
         session.user.test = "test";
         session.user.userId = (user as User).userId;
         session.user.username = (user as User).username;
+        session.user.accessToken = token as any; /// This
         console.log('Post-Setting user properties:', user);
       }
       return session;
