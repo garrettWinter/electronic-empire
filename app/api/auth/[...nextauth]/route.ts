@@ -1,13 +1,8 @@
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { PrismaAdapter } from "@auth/prisma-adapter";
-import { prisma } from '@/app/lib/prisma';
-import { User } from "@prisma/client";
 
 
 const handler = NextAuth({
-  // *** ISSUE -- The below adapter does not work when uncommented, however this is throught to be needed for custom session variables. However, session.user is empty.
-  // adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
@@ -61,7 +56,7 @@ const handler = NextAuth({
     },
     //Attempting to add custom variables to the session.
     async session({ session, token }) {
-      // console.log(token); //The token is the data coming into session from the login... Not all values are being stored in sesion
+      // console.log(token); //The token is the data coming into session from the login... Not all values are being stored in session
       session.user.userId = token.userId as string;
       session.user.username = token.username as string;
       session.user.accessToken = token.accessToken as string;
