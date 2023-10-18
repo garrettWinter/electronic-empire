@@ -33,10 +33,10 @@ const handler = NextAuth({
         })
 
         const user = await res.json();
-        console.log('User captured in authorize call:', user);
 
         if (user) {
           // Any object returned will be saved in `user` property of the JWT
+          console.log('User captured in authorize call:', user);
           return user
         } else {
           // If you return null then an error will be displayed advising the user to check their details.
@@ -60,17 +60,11 @@ const handler = NextAuth({
       return { ...token, ...user };
     },
     //Attempting to add custom variables to the session.
-    async session({ session, user, token }) {
-      console.log('In session callback. User data:', user);
-      console.log('In session callback. Session data', session);
-      if (user) {
-        console.log('Pre-Setting user properties:', user);
-        session.user.test = "test";
-        session.user.userId = (user as User).userId;
-        session.user.username = (user as User).username;
-        session.user.accessToken = token as any; /// This
-        console.log('Post-Setting user properties:', user);
-      }
+    async session({ session, token }) {
+      // console.log(token); //The token is the data coming into session from the login... Not all values are being stored in sesion
+      session.user.userId = token.userId as string;
+      session.user.username = token.username as string;
+      session.user.accessToken = token.accessToken as string;
       return session;
     }
   }
