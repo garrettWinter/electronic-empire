@@ -26,27 +26,27 @@ export default async function Header() {
             display: 'inline',
             padding: '5px',
             fontSize: 'large',
-          }}><a href="http://localhost:3000" >Home</a></li>
+          }}><a href="/" >Home</a></li>
           <li style={{
             display: 'inline',
             padding: '5px',
             fontSize: 'large',
-          }}><a href="http://localhost:3000/accounts">My Account</a></li>
+          }}><a href="/accounts">My Account</a></li>
           <li style={{
             display: 'inline',
             padding: '5px',
             fontSize: 'large',
-          }}><a href="http://localhost:3000/cart">Shopping Cart</a></li>
+          }}><a href="/cart">Shopping Cart</a></li>
           <li style={{
             display: 'inline',
             padding: '5px',
             fontSize: 'large',
-          }}><a href="http://localhost:3000/products">Products</a></li>
+          }}><a href="/products">Products</a></li>
           <li style={{
             display: 'inline',
             padding: '5px',
             fontSize: 'large',
-          }}><a href="http://localhost:3000/contact" >Contact US</a></li>
+          }}><a href="/contact" >Contact US</a></li>
         </ul>
         <SigninButton />
       </nav>
