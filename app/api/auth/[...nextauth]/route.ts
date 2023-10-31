@@ -16,28 +16,32 @@ const handler = NextAuth({
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
-        const res = await fetch("http://localhost:3000/api/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: credentials?.username,
-            password: credentials?.password,
-          }),
-        })
+        const domain = req?.headers?.origin;
+        const fetchURL = `${domain}/api/login`;
+        console.log(fetchURL); // The URL that the fetch request is being SENT to
+        try {
+          const res = await fetch(fetchURL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              username: credentials?.username,
+              password: credentials?.password,
+            }),
+          });
+          const user = await res.json();
+          if (user) {
+            console.log('User captured in authorize call:', user);
+            return user
+          } else {
+            // If you return null then an error will be displayed advising the user to check their details.
+            return null
 
-        const user = await res.json();
-
-        if (user) {
-          // Any object returned will be saved in `user` property of the JWT
-          console.log('User captured in authorize call:', user);
-          return user
-        } else {
-          // If you return null then an error will be displayed advising the user to check their details.
-          return null
-
-          // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
+            // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
+          }
+        } catch (error) {
+          console.error("Fetch error:", error);
         }
       }
     })
