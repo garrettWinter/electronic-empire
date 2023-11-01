@@ -4,7 +4,7 @@ import styles from '../page.module.css'
 import { signIn } from "next-auth/react";
 import React, { useRef } from "react";
 
-export default function login() {
+export default function Login() {
 const username = useRef("");
 const pass = useRef("");
 
