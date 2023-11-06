@@ -23,7 +23,7 @@ export default function Login() {
       <div>
         <div>
           <p>User Name:</p>
-          <textarea name="text" placeholder='username' onChange={(e) => (username.current = e.target.value)}></textarea>
+          <input name="text" placeholder='username' onChange={(e) => (username.current = e.target.value)}></input>
         </div>
         <div>
           <p>Password:</p>

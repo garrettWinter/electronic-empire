@@ -7,10 +7,9 @@ import React, { useRef } from "react";
 export default function Signup() {
   const username = useRef("");
   const pass = useRef("");
-  let errorMessage = "";
 
   const onSubmit = async () => {
-    //FUTURE DEVELOPMENT --- CHECK TO SEE IF USER ID IS USED ALREADY
+    //FUTURE DEVELOPMENT --- CHECK TO SEE IF USER ID IS USED ALREADY, AND IF SO NOTIFY USER
 
     //CREATE THE USER
     const domain = window.location.origin;
@@ -25,10 +24,7 @@ export default function Signup() {
         password: pass.current,
       }),
     });
-    console.log(res);
-    console.log(res.ok);
     if (res?.ok === true) {
-      console.log('SignUp Response OK, logging in user!');
       // LOGIN THE USER
       const result = await signIn("credentials", {
         username: username.current,
@@ -37,7 +33,7 @@ export default function Signup() {
         callbackUrl: "/"
       });
     } else {
-      //FUTURE DEVELOPMENT --- Add Error Messaging Componentw!!!
+      //FUTURE DEVELOPMENT --- Add Error Messaging Component!!!
     }
   }
 
@@ -47,7 +43,7 @@ export default function Signup() {
       <div>
         <div>
           <p>User Name:</p>
-          <textarea name="text" placeholder='username' onChange={(e) => (username.current = e.target.value)}></textarea>
+          <input name="text" placeholder='username' onChange={(e) => (username.current = e.target.value)}></input>
         </div>
         <div>
           <p>Password:</p>
