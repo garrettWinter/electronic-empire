@@ -11,7 +11,7 @@ export default function Home() {
     <main className={styles.main}>
       <p>Home Page</p>
       <HeroBanner />
-      <div style={{display:'flex', flexDirection: "row", justifyContent:'space-evenly'}}>
+      <div style={{display:'flex', flexDirection: "row", justifyContent:'center'}}>
         <SpotLightBanner1 />
         <HeroProducts />
         <SpotLightBanner2 />
