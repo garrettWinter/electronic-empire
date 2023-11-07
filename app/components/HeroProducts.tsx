@@ -1,17 +1,16 @@
 import React from "react";
 import prisma from '../lib/prisma';
-import { wrap } from "module";
 
 export default async function HeroProducts() {
     let heroProducts = await prisma.product.findMany({
         take: 4
     });
-    console.log(heroProducts);
     return (
-        <div style={{ display: "flex", flexDirection: "row", flexWrap: 'wrap', width: '33%', justifyContent: 'center', paddingTop: 20 }}>
+        //width setting below, as temp display and should be removed when migrated to tailWind.
+        <div style={{ display: "flex", flexDirection: "row", flexWrap: 'wrap', width: '50%', justifyContent: 'center', paddingTop: 20 }}>
             {heroProducts.map((product) => (
-                <div style={{ display: "flex", flexDirection: "row"}}>
-                    <div style={{ display: "flex", flexDirection: "column", border: 'solid 2px', margin: 10, padding: 10, minWidth: 300 }}>
+                <div style={{ display: "flex", flexDirection: "row" }}>
+                    <div style={{ display: "flex", flexDirection: "column", border: 'solid 2px', margin: 10, padding: 10, minWidth: 300, maxHeight: 200 }}>
                         <p style={{ fontSize: 20, fontWeight: 'bolder' }}>{product.productName}</p>
                         <div style={{ display: "flex", flexDirection: "row" }}>
                             <img
