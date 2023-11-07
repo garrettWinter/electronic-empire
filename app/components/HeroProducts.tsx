@@ -8,10 +8,10 @@ export default async function HeroProducts() {
     });
     console.log(heroProducts);
     return (
-        <div style={{ display: "flex", flexDirection: "row", flexWrap: 'wrap', width: '33%', justifyContent: 'center'}}>
+        <div style={{ display: "flex", flexDirection: "row", flexWrap: 'wrap', width: '33%', justifyContent: 'center', paddingTop: 20 }}>
             {heroProducts.map((product) => (
-                <div style={{ display: "flex", flexDirection: "row", paddingTop: 20 }}>
-                    <div style={{ display: "flex", flexDirection: "column", border: 'solid 2px', margin: 10, padding: 10 }}>
+                <div style={{ display: "flex", flexDirection: "row"}}>
+                    <div style={{ display: "flex", flexDirection: "column", border: 'solid 2px', margin: 10, padding: 10, minWidth: 300 }}>
                         <p style={{ fontSize: 20, fontWeight: 'bolder' }}>{product.productName}</p>
                         <div style={{ display: "flex", flexDirection: "row" }}>
                             <img
