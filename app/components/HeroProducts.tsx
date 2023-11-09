@@ -1,6 +1,7 @@
 import React from "react";
 import prisma from '../lib/prisma';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default async function HeroProducts() {
     let heroProducts = await prisma.product.findMany({
@@ -12,15 +13,20 @@ export default async function HeroProducts() {
             {heroProducts.map((product) => (
                 <div key={product.productId} style={{ display: "flex", flexDirection: "row" }}>
                     <div style={{ display: "flex", flexDirection: "column", border: 'solid 2px', margin: 10, padding: 10, minWidth: 400 }}>
-                        <p style={{ fontSize: 20, fontWeight: 'bolder' }}>{product.productName}</p>
+                        <Link href={`/products?id=${product.productId}`}>
+                            <p style={{ fontSize: 20, fontWeight: 'bolder' }}>{product.productName}
+                            </p>
+                        </Link>
                         <div style={{ display: "flex", flexDirection: "row" }}>
-                            <Image
-                                title={product.productName}
-                                alt={product.productName}
-                                src={product.productImage}
-                                width='200'
-                                height='200'>
-                            </Image>
+                            <Link href={`/products?id=${product.productId}`}>
+                                <Image
+                                    title={product.productName}
+                                    alt={product.productName}
+                                    src={product.productImage}
+                                    width='200'
+                                    height='200'>
+                                </Image>
+                            </Link>
                             <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-around" }}>
                                 <p style={{ fontSize: 16, fontWeight: 'bold' }}>Price: {new Intl.NumberFormat('en-US', {
                                     style: 'currency',
