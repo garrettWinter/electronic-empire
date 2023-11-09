@@ -1,21 +1,36 @@
-'use client'
+// 'use client'
 
 import styles from '../page.module.css'
-import { useSearchParams } from 'next/navigation';
 import ProductDetails from '../components/ProductDetails';
 
-type ProductDetailsProps = {
-  product: number | null;
+type ctx = {
+  query: any | null;
 };
 
-export default function ProductPage(props: ProductDetailsProps) {
-  const searchParams = useSearchParams();
-  const params = searchParams.get('id');
-  const product = params ? parseInt(params, 10) : null
+type ProductDetailsProps = {
+  params: string | null
+  searchParams: { id?: number } | null;
+};
+
+export async function getServerSideProps(ctx: ctx){
+  const { ServerSearchParams } = ctx.query;
+
+
+  return {
+    props: {
+      ServerSearchParams,
+    },
+  }
+
+};
+
+export default function ProductPage(serverSearchParams: ProductDetailsProps) {
+  const params = serverSearchParams.searchParams?.id;
+  const productId = params ? parseInt(params.toString(), 10) : null;
   return (
     <main className={styles.main}>
       <ProductDetails
-        product={product as number}
+        product={productId as number}
       />
     </main>
   )
