@@ -15,7 +15,6 @@ export default async function ProductDetails(props: ProductDetailsProps) {
             <div>No id query string present... Make it so this is the general all products page component.</div>
         )
     } else {
-        //THIS NEEDS TO BE MOVED INTO 
         const productDetails = await prisma.product.findUnique({
             where: {
                 productId: props.product,
