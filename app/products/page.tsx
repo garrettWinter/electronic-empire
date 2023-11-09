@@ -14,7 +14,6 @@ export default function ProductPage(props: ProductDetailsProps) {
   const product = params ? parseInt(params, 10) : null
   return (
     <main className={styles.main}>
-      <p>Product Details Page for Product: {params}</p>
       <ProductDetails
         product={product as number}
       />
