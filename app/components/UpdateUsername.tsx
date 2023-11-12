@@ -3,23 +3,26 @@ import { signIn, useSession } from 'next-auth/react';
 
 const UpdateUsername: React.FC = () => {
     const { data: session } = useSession();
+    console.log("Session data:", session);
     const [isUpdateSuccessful, setIsUpdateSuccessful] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const newUsername = useRef('');
-    const currentUsername = useRef('');
     const password = useRef('');
 
     const handleUpdateUsername = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         setErrorMessage(''); // Reset error message
 
+    // Get current username from session
+    const currentUsername = session?.user?.username || '';
+    console.log("Current username from session:", currentUsername);
         try {
             const response = await fetch('/api/updateUsername', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ currentUsername: currentUsername.current, newUsername: newUsername.current, password: password.current }),
+                body: JSON.stringify({ currentUsername, newUsername: newUsername.current, password: password.current }),
             });
 
             if (response.ok) {
@@ -54,15 +57,6 @@ const UpdateUsername: React.FC = () => {
                         type="password"
                         placeholder='password'
                         onChange={(e) => (password.current = e.target.value)}
-                        style = {{ color: 'black'}}
-                    />
-                </div>
-                <div>
-                    <p>Current Username:</p>
-                    <input
-                        type="text"
-                        placeholder='current username'
-                        onChange={(e) => (currentUsername.current = e.target.value)}
                         style = {{ color: 'black'}}
                     />
                 </div>
