@@ -1,9 +1,25 @@
+'use client'
 import styles from '../page.module.css'
+import React, { useState } from 'react';
+import UserProfile from '../components/UserProfile';
+// Import OrderHistory component 
 
-export default function Contact() {
-  return (
-    <main className={styles.main}>
-   <p>My Account</p>
-    </main>
-  )
-}
+const Account: React.FC = () => {
+    const [selectedSection, setSelectedSection] = useState<string>('');
+
+    return (
+        <div className="flex flex-col mt-20">
+            <button onClick={() => setSelectedSection('profile')}>
+                User Profile
+            </button>
+            <button onClick={() => setSelectedSection('orders')}>
+                Order History
+            </button>
+
+            {selectedSection === 'profile' && <UserProfile />}
+            {/* selectedSection === 'orders' && <OrderHistory /> */}
+        </div>
+    );
+};
+
+export default Account;
