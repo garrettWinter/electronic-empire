@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import UpdateUsername from './UpdateUsername';
-// import UpdatePassword from './UpdatePassword';
-// import DeleteAccount from './DeleteAccount';
+import ChangePassword from './ChangePassword';
+import DeleteAccount from './DeleteAccount';
 
 const UserProfile: React.FC = () => {
     const [selectedOption, setSelectedOption] = useState<string>('');
@@ -17,8 +17,8 @@ const UserProfile: React.FC = () => {
             </div>
             <div className="w-2/3">
             {selectedOption === 'username' && <UpdateUsername />}
-            {/* {selectedOption === 'password' && <UpdatePassword />}
-            {selectedOption === 'delete' && <DeleteAccount />} */}
+            {selectedOption === 'password' && <ChangePassword />}
+            {selectedOption === 'delete' && <DeleteAccount />} 
             </div>
         </div>
     );
