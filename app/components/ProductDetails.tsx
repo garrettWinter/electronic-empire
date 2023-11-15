@@ -2,22 +2,19 @@ import React from "react";
 import prisma from '../lib/prisma';
 import Image from 'next/image';
 
-type ProductDetailsProps = {
-    product: number;
-};
 
-export default async function ProductDetails(props: ProductDetailsProps) {
-    //Logic in place to allow for us to load a different content based if their is a query peram of id in the URL.
-
+export default async function ProductDetails(params: {productId: number}) {
+    let product = params ? parseInt(params.productId.toString(), 10) : null;
     //UPDATE SO CHECKS TO MAKE SURE CAN FIND RESULT AS WELL!!!!
-    if (props.product === null) {
+    console.log("In Product Details, reiceve param is "+params.productId);
+    if (product === null || product === undefined) {
         return (
             <div>No id query string present... Make it so this is the general all products page component.</div>
         )
     } else {
         const productDetails = await prisma.product.findUnique({
             where: {
-                productId: props.product,
+                productId: (product),
             },
         });
         console.log(productDetails);
@@ -32,7 +29,7 @@ export default async function ProductDetails(props: ProductDetailsProps) {
                         width='200'
                         height='200'>
                     </Image>
-                    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', padding:'5px' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', padding: '5px' }}>
                         <p style={{ fontSize: '25px', fontWeight: 'bold' }}>{productDetails!.productName}</p>
                         <p style={{ fontSize: '16px', fontWeight: 'bold' }}>Price: {new Intl.NumberFormat('en-US', {
                             style: 'currency',
