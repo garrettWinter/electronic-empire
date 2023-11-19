@@ -66,8 +66,8 @@ const DeleteAccount: React.FC = () => {
             {step === 1 && (
                 <form onSubmit={handleDeleteRequest}>
                     {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-                    <input type="text" placeholder="Username" ref={usernameRef} style={{ color: 'black'}} />
-                    <input type="password" placeholder="Password" ref={passwordRef} style={{ color: 'black'}} />
+                    <input type="text" placeholder="Username" ref={usernameRef} style={{ color: 'black' }} />
+                    <input type="password" placeholder="Password" ref={passwordRef} style={{ color: 'black' }} />
                     <button type="submit">Verify Account</button>
                 </form>
             )}

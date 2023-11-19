@@ -21,7 +21,7 @@ async function seedDatabase() {
             data: productSeed
         });
         console.log('Seed completed successfully for Product table');
-        
+
         await prisma.user.createMany({
             data: userSeed
         });

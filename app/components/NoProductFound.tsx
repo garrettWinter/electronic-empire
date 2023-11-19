@@ -9,4 +9,4 @@ export default async function NoProductFound() {
             <p>ADD THE SEARCH BAR COMPONENT HERE </p>
         </div>
     )
-}
+};

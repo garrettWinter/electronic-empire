@@ -16,9 +16,9 @@ const UserProfile: React.FC = () => {
                 <button className="block w-full my-2" onClick={() => setSelectedOption('delete')}>Delete Account</button>
             </div>
             <div className="w-2/3">
-            {selectedOption === 'username' && <UpdateUsername />}
-            {selectedOption === 'password' && <ChangePassword />}
-            {selectedOption === 'delete' && <DeleteAccount />} 
+                {selectedOption === 'username' && <UpdateUsername />}
+                {selectedOption === 'password' && <ChangePassword />}
+                {selectedOption === 'delete' && <DeleteAccount />}
             </div>
         </div>
     );
