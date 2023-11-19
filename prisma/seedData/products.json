@@ -26,7 +26,8 @@
         "productPrice": 1299.99,
         "productImage": "/images/200x200-Product-Placeholder.jpg",
         "ProductDescription": "Brand new phone, but same as the last version."
-    },    {
+    },
+    {
         "productId": 5,
         "productName": "Samsung Galaxy Note 10",
         "productPrice": 1321.99,
