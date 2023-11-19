@@ -1,11 +1,11 @@
 import styles from '../page.module.css'
-import ProductDetails from '../components/product/ProductDetails';
+import AllProducts from '../components/product/AllProducts';
 
 export default function ProductPage() {
 
   return (
     <main className={styles.main}>
-      <p>All Products Component here</p>
+      <AllProducts />
     </main>
   )
 }
