@@ -35,16 +35,22 @@ const OrderHistory = () => {
     return (
         <div>
             <h2>Your Order History</h2>
-            {orders.map(order => (
-                <div key={order.orderId}>
-                    <p>Order ID: {order.orderId}</p>
-                    <p>Date: {new Date(order.orderDate).toLocaleDateString()}</p>
-                    <p>Total: ${order.orderTotal.toFixed(2)}</p>
-                    <button onClick={() => {/* logic to view order details */}}>
-                        View Order
-                    </button>
-                </div>
-            ))}
+            {orders.map((order: Order) => {
+    const orderTotal = Number(order.orderTotal);
+    return (
+        <div key={order.orderId}>
+            <p>Order ID: {order.orderId}</p>
+            <p>Date: {new Date(order.orderDate).toLocaleDateString()}</p>
+            <p>Total: ${!isNaN(orderTotal) ? orderTotal.toFixed(2) : '0.00'}</p>
+            <button onClick={() => {/* logic to view order details */}}>
+                View Order
+            </button>
+        </div>
+    );
+})}
+
+
+
         </div>
     );
 };
