@@ -1,5 +1,5 @@
 import styles from '../../page.module.css'
-import ProductDetails from '../../components/ProductDetails';
+import ProductDetails from '../../components/product/ProductDetails';
 
 
 export default function ProductPage({ params, }: { params: { productId: number } }) {
