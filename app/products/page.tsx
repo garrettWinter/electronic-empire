@@ -5,7 +5,10 @@ export default function ProductPage() {
 
   return (
     <main className={styles.main}>
-      <AllProducts />
+      <div>
+        <p style={{ fontWeight: "bolder", fontSize: "2.25em" }}>All Products:</p>
+        <AllProducts />
+      </div>
     </main>
   )
 }
