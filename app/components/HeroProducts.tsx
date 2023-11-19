@@ -18,7 +18,7 @@ export default async function HeroProducts() {
                             </p>
                         </Link>
                         <div style={{ display: "flex", flexDirection: "row" }}>
-                            <Link href={`/products?id=${product.productId}`}>
+                            <Link href={`/products/${product.productId}`}>
                                 <Image
                                     title={product.productName}
                                     alt={product.productName}

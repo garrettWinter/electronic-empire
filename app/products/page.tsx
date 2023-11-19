@@ -1,11 +1,14 @@
 import styles from '../page.module.css'
-import ProductDetails from '../components/ProductDetails';
+import AllProducts from '../components/product/AllProducts';
 
 export default function ProductPage() {
 
   return (
     <main className={styles.main}>
-      <p>All Products Component here</p>
+      <div>
+        <p style={{ fontWeight: "bolder", fontSize: "2.25em" }}>All Products:</p>
+        <AllProducts />
+      </div>
     </main>
   )
 }

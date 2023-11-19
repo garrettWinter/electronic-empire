@@ -13,9 +13,9 @@ const UpdateUsername: React.FC = () => {
         event.preventDefault();
         setErrorMessage(''); // Reset error message
 
-    // Get current username from session
-    const currentUsername = session?.user?.username || '';
-    console.log("Current username from session:", currentUsername);
+        // Get current username from session
+        const currentUsername = session?.user?.username || '';
+        console.log("Current username from session:", currentUsername);
         try {
             const response = await fetch('/api/updateUsername', {
                 method: 'POST',
@@ -52,25 +52,25 @@ const UpdateUsername: React.FC = () => {
                 <div>
                     {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
                     <div>
-                    <p>Password:</p>
-                    <input
-                        type="password"
-                        placeholder='password'
-                        onChange={(e) => (password.current = e.target.value)}
-                        style = {{ color: 'black'}}
-                    />
+                        <p>Password:</p>
+                        <input
+                            type="password"
+                            placeholder='password'
+                            onChange={(e) => (password.current = e.target.value)}
+                            style={{ color: 'black' }}
+                        />
+                    </div>
+                    <div>
+                        <p>New Username:</p>
+                        <input
+                            type="text"
+                            placeholder='new username'
+                            onChange={(e) => (newUsername.current = e.target.value)}
+                            style={{ color: 'black' }}
+                        />
+                    </div>
+                    <button style={{ backgroundColor: "green" }} onClick={handleUpdateUsername}>Update Username</button>
                 </div>
-                <div>
-                    <p>New Username:</p>
-                    <input
-                        type="text"
-                        placeholder='new username'
-                        onChange={(e) => (newUsername.current = e.target.value)}
-                        style = {{ color: 'black'}}
-                    />
-                </div>
-                <button style={{ backgroundColor: "green" }} onClick={handleUpdateUsername}>Update Username</button>
-            </div>
             )}
         </div>
     );

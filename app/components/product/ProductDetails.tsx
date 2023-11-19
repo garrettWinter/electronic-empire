@@ -1,24 +1,22 @@
 import React from "react";
-import prisma from '../lib/prisma';
+import prisma from '../../lib/prisma';
 import Image from 'next/image';
+import NoProductFound from './NoProductFound';
 
 
-export default async function ProductDetails(params: {productId: number}) {
-    let product = params ? parseInt(params.productId.toString(), 10) : null;
-    //UPDATE SO CHECKS TO MAKE SURE CAN FIND RESULT AS WELL!!!!
-    console.log("In Product Details, reiceve param is "+params.productId);
-    if (product === null || product === undefined) {
+export default async function ProductDetails(params: { productId: number }) {
+    let product = parseInt(params.productId.toString(), 10);
+    const productDetails = await prisma.product.findUnique({
+        where: {
+            productId: (product),
+        },
+    });
+    //If no product was found via the query, this will display the user the NoProductFound component.
+    if (productDetails === null) {
         return (
-            <div>No id query string present... Make it so this is the general all products page component.</div>
+            <NoProductFound />
         )
     } else {
-        const productDetails = await prisma.product.findUnique({
-            where: {
-                productId: (product),
-            },
-        });
-        console.log(productDetails);
-
         return (
             <div>
                 <div style={{ display: 'flex', flexDirection: 'row' }}>

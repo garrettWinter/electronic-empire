@@ -18,13 +18,41 @@
         "productName": "2TB SSD",
         "productPrice": 169.99,
         "productImage": "/images/200x200-Product-Placeholder.jpg",
-        "ProductDescription": "New harddrive for the win!"
+        "ProductDescription": "New hard drive for the win!"
     },
     {
         "productId": 4,
-        "productName": "Cell Phone",
+        "productName": "Apple IPhone",
         "productPrice": 1299.99,
         "productImage": "/images/200x200-Product-Placeholder.jpg",
         "ProductDescription": "Brand new phone, but same as the last version."
+    },
+    {
+        "productId": 5,
+        "productName": "Samsung Galaxy Note 10",
+        "productPrice": 1321.99,
+        "productImage": "/images/200x200-Product-Placeholder.jpg",
+        "ProductDescription": "Galaxy Note 10"
+    },
+    {
+        "productId": 6,
+        "productName": "XBox",
+        "productPrice": 499.99,
+        "productImage": "/images/200x200-Product-Placeholder.jpg",
+        "ProductDescription": "Shinny New Xbox"
+    },
+    {
+        "productId": 7,
+        "productName": "Clickity Clack Keyboard",
+        "productPrice": 69.99,
+        "productImage": "/images/200x200-Product-Placeholder.jpg",
+        "ProductDescription": "This keyboard makes sooo much noise!"
+    },
+    {
+        "productId": 8,
+        "productName": "FitBit",
+        "productPrice": 159.99,
+        "productImage": "/images/200x200-Product-Placeholder.jpg",
+        "ProductDescription": "Lets track out steps!."
     }
 ]

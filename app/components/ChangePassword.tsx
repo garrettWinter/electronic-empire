@@ -52,25 +52,25 @@ const ChangePassword: React.FC = () => {
                 <p style={{ color: 'green' }}>Password updated triumphantly!</p>
             ) : (
                 <div>
-            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-            <div>
-                <p>Old Password:</p>
-                <input type="password" onChange={(e) => (oldPassword.current = e.target.value)} style={{ color: 'black'}} />
-            </div>
-            <div>
-                <p>New Password:</p>
-                <input type="password" onChange={(e) => (newPassword.current = e.target.value)} style={{ color: 'black'}} />
-            </div>
-            <div>
-                <p>Confirm New Password:</p>
-                <input type="password" onChange={(e) => (confirmPassword.current = e.target.value)} style={{ color: 'black'}} />
-            </div>
-            <button style={{ backgroundColor: "green" }} onClick={handleChangePassword}>Change Password</button>
-           </div>
-            )} 
-            </div>
-            
-            
+                    {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+                    <div>
+                        <p>Old Password:</p>
+                        <input type="password" onChange={(e) => (oldPassword.current = e.target.value)} style={{ color: 'black' }} />
+                    </div>
+                    <div>
+                        <p>New Password:</p>
+                        <input type="password" onChange={(e) => (newPassword.current = e.target.value)} style={{ color: 'black' }} />
+                    </div>
+                    <div>
+                        <p>Confirm New Password:</p>
+                        <input type="password" onChange={(e) => (confirmPassword.current = e.target.value)} style={{ color: 'black' }} />
+                    </div>
+                    <button style={{ backgroundColor: "green" }} onClick={handleChangePassword}>Change Password</button>
+                </div>
+            )}
+        </div>
+
+
     );
 };
 

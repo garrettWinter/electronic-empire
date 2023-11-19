@@ -1,10 +1,9 @@
 import styles from '../../page.module.css'
-import ProductDetails from '../../components/ProductDetails';
+import ProductDetails from '../../components/product/ProductDetails';
 
 
-export default function ProductPage({ params,}: {params: {productId: number}}) {
+export default function ProductPage({ params, }: { params: { productId: number } }) {
   const product = params.productId;
-console.log("In Dynamic Route Param is: " + product);
   return (
     <main className={styles.main}>
       <ProductDetails
