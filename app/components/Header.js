@@ -9,20 +9,20 @@ import { relative } from "path";
 
 export default async function Header() {
   return (
-    <header>
+    <header style={{
+      position: 'fixed',
+      top: 0,
+      width: '100%',
+      backgroundColor: 'thistle',
+    }}>
       <nav style={{
         display: 'flex',
         flexWrap: 'wrap',
         color: 'navy',
-        backgroundColor: 'thistle',
         justifyContent: 'center',
         flexDirection: 'row',
-        position: 'fixed',
-        width: '100%',
         height: '60px',
-        border: '5px solid black',
         padding: '10px 5px',
-        top: 0
       }}>
         <ul>
           <li style={{
@@ -53,7 +53,7 @@ export default async function Header() {
         </ul>
         <SigninButton />
       </nav>
-      <div style={{paddingTop:'60px'}}> 
+      <div > 
         <SearchBar />
       </div>
 

@@ -17,7 +17,7 @@ export default function SearchBar() {
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'row', paddingLeft: '50px' }}>
+        <div style={{ display: 'flex', flexDirection: 'row', paddingLeft: '50px', paddingBottom: '10px' }}>
             <p style={{ fontWeight: 'bolder' }}>Product Search:</p>
             <input
                 name='searchBar'
