@@ -4,6 +4,8 @@ import SigninButton from "./SigninButton";
 
 
 import { useRouter } from 'next/navigation'
+import SearchBar from "./product/SearchBar";
+import { relative } from "path";
 
 export default async function Header() {
   return (
@@ -17,6 +19,7 @@ export default async function Header() {
         flexDirection: 'row',
         position: 'fixed',
         width: '100%',
+        height: '60px',
         border: '5px solid black',
         padding: '10px 5px',
         top: 0
@@ -50,6 +53,10 @@ export default async function Header() {
         </ul>
         <SigninButton />
       </nav>
+      <div style={{paddingTop:'60px'}}> 
+        <SearchBar />
+      </div>
+
     </header >
   );
 }
