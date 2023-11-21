@@ -4,22 +4,25 @@ import SigninButton from "./SigninButton";
 
 
 import { useRouter } from 'next/navigation'
+import SearchBar from "./product/SearchBar";
+import { relative } from "path";
 
 export default async function Header() {
   return (
-    <header>
+    <header style={{
+      position: 'fixed',
+      top: 0,
+      width: '100%',
+      backgroundColor: 'thistle',
+    }}>
       <nav style={{
         display: 'flex',
         flexWrap: 'wrap',
         color: 'navy',
-        backgroundColor: 'thistle',
         justifyContent: 'center',
         flexDirection: 'row',
-        position: 'fixed',
-        width: '100%',
-        border: '5px solid black',
+        height: '60px',
         padding: '10px 5px',
-        top: 0
       }}>
         <ul>
           <li style={{
@@ -50,6 +53,10 @@ export default async function Header() {
         </ul>
         <SigninButton />
       </nav>
+      <div > 
+        <SearchBar />
+      </div>
+
     </header >
   );
 }
