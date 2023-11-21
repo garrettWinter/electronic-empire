@@ -1,5 +1,4 @@
 'use client'
-import { stringify } from "querystring";
 import React from "react";
 
 export default function AddToCartButton(parms: { productId: number, qty: number }) {
