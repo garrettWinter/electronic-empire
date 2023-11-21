@@ -2,7 +2,7 @@
 import styles from '../page.module.css'
 import React, { useState } from 'react';
 import UserProfile from '../components/UserProfile';
-// Import OrderHistory component 
+import OrderHistory from '../components/GetOrders';
 
 const Account: React.FC = () => {
     const [selectedSection, setSelectedSection] = useState<string>('');
@@ -17,7 +17,7 @@ const Account: React.FC = () => {
             </button>
 
             {selectedSection === 'profile' && <UserProfile />}
-            {/* selectedSection === 'orders' && <OrderHistory /> */}
+            {selectedSection === 'orders' && <OrderHistory />}
         </div>
     );
 };

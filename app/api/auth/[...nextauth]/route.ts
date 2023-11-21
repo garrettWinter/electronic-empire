@@ -1,8 +1,9 @@
+import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 
-const handler = NextAuth({
+export const authOptions = {
   providers: [
     CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
@@ -67,6 +68,7 @@ const handler = NextAuth({
       return session;
     }
   }
-});
+} satisfies NextAuthOptions;
 
+const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST }; 

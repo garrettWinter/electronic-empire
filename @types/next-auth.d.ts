@@ -18,4 +18,11 @@ declare module 'next-auth' {
     export interface Session {
         user: User;
     }
+
+    export interface Token {
+        userId: string;
+        username: string;
+        accessToken: string;
+        // Other token fields...
+    }
 }
