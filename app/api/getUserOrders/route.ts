@@ -17,6 +17,20 @@ export async function GET() {
                 orderId: true,
                 orderTotal: true,
                 orderDate: true,
+                lineItem: {
+                    select: {
+                        orderLineItemId: true,
+                        qty: true,
+                        linePrice: true,
+                        product: {
+                            select: {
+                                productName: true,
+                                productImage: true,
+                                productPrice: true,
+                            },
+                        },
+                    },
+                },
             },
         });
 
@@ -25,3 +39,4 @@ export async function GET() {
         return new Response(JSON.stringify({ message: 'Something went wrong' }), { status: 500 });
     }
 }
+
