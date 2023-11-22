@@ -1,8 +1,10 @@
 'use client'
 import React from "react";
 
-export default function AddToCartButton(parms: { productId: number, qty: number }) {
+export default function AddToCartButton(parms: { productId: number, qty: number | string}) {
     function AddToCart() {
+        console.log("In AddToCart");
+        console.log(parms);
         let product = {
             productId: parms.productId,
             qty: parms.qty

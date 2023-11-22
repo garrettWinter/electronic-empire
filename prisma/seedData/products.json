@@ -4,55 +4,55 @@
         "productName": "75 inch TV",
         "productPrice": 4321.99,
         "productImage": "/images/200x200-Product-Placeholder.jpg",
-        "ProductDescription": "A huge 4k TV"
+        "productDescription": "A huge 4k TV"
     },
     {
         "productId": 2,
         "productName": "PS5",
         "productPrice": 499.99,
         "productImage": "/images/200x200-Product-Placeholder.jpg",
-        "ProductDescription": "Shinny New PS5"
+        "productDescription": "Shinny New PS5"
     },
     {
         "productId": 3,
         "productName": "2TB SSD",
         "productPrice": 169.99,
         "productImage": "/images/200x200-Product-Placeholder.jpg",
-        "ProductDescription": "New hard drive for the win!"
+        "productDescription": "New hard drive for the win!"
     },
     {
         "productId": 4,
         "productName": "Apple IPhone",
         "productPrice": 1299.99,
         "productImage": "/images/200x200-Product-Placeholder.jpg",
-        "ProductDescription": "Brand new phone, but same as the last version."
+        "productDescription": "Brand new phone, but same as the last version."
     },
     {
         "productId": 5,
         "productName": "Samsung Galaxy Note 10",
         "productPrice": 1321.99,
         "productImage": "/images/200x200-Product-Placeholder.jpg",
-        "ProductDescription": "Galaxy Note 10"
+        "productDescription": "Galaxy Note 10"
     },
     {
         "productId": 6,
         "productName": "XBox",
         "productPrice": 499.99,
         "productImage": "/images/200x200-Product-Placeholder.jpg",
-        "ProductDescription": "Shinny New Xbox"
+        "productDescription": "Shinny New Xbox"
     },
     {
         "productId": 7,
         "productName": "Clickity Clack Keyboard",
         "productPrice": 69.99,
         "productImage": "/images/200x200-Product-Placeholder.jpg",
-        "ProductDescription": "This keyboard makes sooo much noise!"
+        "productDescription": "This keyboard makes sooo much noise!"
     },
     {
         "productId": 8,
         "productName": "FitBit",
         "productPrice": 159.99,
         "productImage": "/images/200x200-Product-Placeholder.jpg",
-        "ProductDescription": "Lets track out steps!."
+        "productDescription": "Lets track out steps!."
     }
 ]
