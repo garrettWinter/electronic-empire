@@ -1,7 +1,8 @@
-import react from 'react';
+import React from 'react';
 import prisma from '../../lib/prisma';
 import Image from 'next/image';
 import Link from 'next/link';
+import AddToCartButton from '../checkout/AddToCartButton';
 
 export default async function AllProducts() {
     let allProducts = await prisma.product.findMany({});
@@ -29,12 +30,15 @@ export default async function AllProducts() {
                                     </Image>
                                 </Link>
                                 <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-around", padding: '7px' }}>
-                                    <p style={{ maxWidth: '200px' }}>{product.ProductDescription}</p>
+                                    <p style={{ maxWidth: '200px' }}>{product.productDescription}</p>
                                     <p style={{ fontSize: 16, fontWeight: 'bold' }}>Price: {new Intl.NumberFormat('en-US', {
                                         style: 'currency',
                                         currency: 'USD'
                                     }).format(product.productPrice.toNumber())}</p>
-                                    <button style={{ backgroundColor: "green", color: "white" }}>Add to Cart</button>
+                                    <AddToCartButton
+                                        productId={product.productId}
+                                        qty={1}
+                                    />
                                 </div>
                             </div>
                         </div>
