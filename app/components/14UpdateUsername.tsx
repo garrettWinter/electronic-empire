@@ -12,12 +12,12 @@ export default function UpdateUsernamePage() {
     const password = formData.get('password')?.toString() || '';
     const newUsername = formData.get('newUsername')?.toString() || '';
 
-        // Check for missing form data
-        if (!currentUsername || !password || !newUsername) {
-            setError('Please fill in all the fields.');
-            return;
-          }
-          
+    // Check for missing form data
+    if (!currentUsername || !password || !newUsername) {
+      setError('Please fill in all the fields.');
+      return;
+    }
+
     try {
       const user = await prisma.user.findUnique({
         where: {

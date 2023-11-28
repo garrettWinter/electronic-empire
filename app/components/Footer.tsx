@@ -1,8 +1,8 @@
 import React from "react";
 
-export default async function Footer(){
+export default async function Footer() {
 
-    return(
+    return (
         <footer style={{
             width: "100%",
             backgroundColor: "transparent",

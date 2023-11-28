@@ -53,7 +53,7 @@ model Product {
   productName        String
   productPrice       Decimal         @db.Decimal(10, 2) //This will limit the product price to be under  9,999,999,999.99
   productImage       String
-  ProductDescription String          @db.VarChar(4000)
+  productDescription String          @db.VarChar(4000)
   lineItems          OrderLineItem[] /// IS THIS CORRECT??? DOES THIS SHOW IN TABLE?
   createdAt          DateTime        @default(now())
   updatedAt          DateTime        @updatedAt

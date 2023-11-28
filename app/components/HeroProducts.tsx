@@ -2,6 +2,7 @@ import React from "react";
 import prisma from '../lib/prisma';
 import Image from 'next/image';
 import Link from 'next/link';
+import AddToCartButton from './checkout/AddToCartButton';
 
 export default async function HeroProducts() {
     let heroProducts = await prisma.product.findMany({
@@ -18,7 +19,7 @@ export default async function HeroProducts() {
                             </p>
                         </Link>
                         <div style={{ display: "flex", flexDirection: "row" }}>
-                            <Link href={`/products?id=${product.productId}`}>
+                            <Link href={`/products/${product.productId}`}>
                                 <Image
                                     title={product.productName}
                                     alt={product.productName}
@@ -32,7 +33,10 @@ export default async function HeroProducts() {
                                     style: 'currency',
                                     currency: 'USD'
                                 }).format(product.productPrice.toNumber())}</p>
-                                <button style={{ backgroundColor: "green", color: "white" }}>Add to Cart</button>
+                                <AddToCartButton
+                                    productId={product.productId}
+                                    qty={1}
+                                />
                             </div>
                         </div>
                     </div>
