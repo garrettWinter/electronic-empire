@@ -7,7 +7,7 @@ interface Order {
     orderId: number;
     orderDate: string;
     orderTotal: number;
-    lineItems: OrderLineItem[];
+    lineItem: OrderLineItem[];
     // Add other relevant fields that match the API response
 }
 
@@ -79,13 +79,13 @@ const OrderHistory: React.FC = () => {
             <h3>Order ID: {selectedOrder.orderId}</h3>
             <p>Date Ordered: {new Date(selectedOrder.orderDate).toLocaleDateString()}</p>
 
-            {selectedOrder.lineItems && selectedOrder.lineItems.map(lineItem => (
+            {selectedOrder.lineItem && selectedOrder.lineItem.map(lineItem => (
                 <div key={lineItem.orderLineItemId}>
                     <Image src={lineItem.product.productImage} alt={lineItem.product.productName} width={100} height={100} />
                     <p>Product: {lineItem.product.productName}</p>
                     <p>Quantity: {lineItem.qty}</p>
-                    <p>Price: ${lineItem.product.productPrice.toFixed(2)}</p>
-                    <p>Line Total: ${lineItem.linePrice.toFixed(2)}</p>
+                    <p>Price: ${Number(lineItem.product.productPrice).toFixed(2)}</p>
+                    <p>Line Total: ${Number(lineItem.linePrice).toFixed(2)}</p>
                 </div>
             ))}
 
