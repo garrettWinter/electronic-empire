@@ -1,12 +1,13 @@
-'use client'
+'use client';
 
 import React from "react";
 import Image from 'next/image';
 import PlaceHolderImage from '../../../public/images/200x200-Product-Placeholder.jpg';
 
 export default function CartProductCard() {
-    console.log("in product card")
-    console.log(localStorage.cart)
+    console.log("in product card");
+    let cart = localStorage.getItem("cart");
+    console.log(cart)
     return (
         <div style={{
             display: 'flex'
