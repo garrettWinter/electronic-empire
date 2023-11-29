@@ -108,6 +108,28 @@
   position: relative;
 }
 
+.modalOverlay {
+  position: fixed; /* Fixed position to cover the whole screen */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  align-items: center; /* Center the modal content vertically */
+  justify-content: center; /* Center the modal content horizontally */
+  z-index: 1000; /* High z-index to ensure it's on top */
+}
+
+.modalContent {
+  background-color: white;
+  color: black;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1001; /* Ensure the content is above the overlay */
+}
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
