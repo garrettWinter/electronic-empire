@@ -34,6 +34,8 @@ export async function GET() {
             },
         });
 
+        
+
         return new Response(JSON.stringify(userOrders));
     } catch (error) {
         return new Response(JSON.stringify({ message: 'Something went wrong' }), { status: 500 });
