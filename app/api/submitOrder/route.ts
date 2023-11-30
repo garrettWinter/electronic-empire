@@ -15,7 +15,7 @@ interface OrderedProduct {
     productPrice: Decimal;
     qty?: number; // Add this line to include the 'qty' property
     lineItemTotal?: number; // Optional property for line item total
-}
+};
 
 export async function POST(request: Request) {
     console.log("SubmitOrder has started");
