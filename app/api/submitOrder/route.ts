@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     if (verification === null) {
         return new Response(JSON.stringify({ response: 'An error has occured!' }), { status: 500 })
     } else {
-        let total = 0;
+        let orderTotal = 0;
         let productList: [] = [];
         //Creating an array of productIds for product lookup query
         for (let i = 0; i < body.products.length; i++) {
@@ -45,36 +45,41 @@ export async function POST(request: Request) {
         console.log(body.products)
         //Mapping the qty and lineItemPrice to the orderedProducts object
         for (let i = 0; i < orderedProducts.length; i++) {
-            console.log("\nLoop Index is: "+i)
+            console.log("\nLoop Index is: " + i)
             console.log("Loop looking for: " + orderedProducts[i].productId)
-           let search = body.products.findIndex((product, index) => {
-            console.log ("Product-Search: "+product.productId);
-            console.log ("FindIndex Index: " + index);
-            console.log(product);
-            return product.productId == orderedProducts[i].productId});
+            let search = body.products.findIndex((product, index) => {
+                console.log("Product-Search: " + product.productId);
+                console.log("FindIndex Index: " + index);
+                console.log(product);
+                return product.productId == orderedProducts[i].productId
+            });
+            console.log("*** search Results: " + search);
+            if (search != -1) {
+                orderedProducts[i].qty = body.products[search].qty;
+                //Need to sum the line items (price * qty)
+                orderedProducts[i].lineItemTotal = parseFloat((body.products[search].qty * orderedProducts[i].productPrice).toFixed(2));
+                //Need to sum complete total
+                orderTotal = parseFloat((orderTotal + orderedProducts[i].lineItemTotal).toFixed(2));;
+            };
 
-           console.log("*** search Results: "+search);
- 
         }
+        console.log("Final orderedProducts variable: ");
+        console.log(orderedProducts);
+        console.log("\norderTotal is: " + orderTotal);
+        //if Yes, insert order in order table
+        const newOrder = await prisma.order.create({
+            data: {
+                userId: verification.userId,
+                orderTotal: total
+            }
+        });
+        //foreach on line items and instear into line item table
+        //if Yes, insert order in line item table
+        //give positive response if completes
+        //give negative response if error
 
-    console.log("\nTotal is: "+total);
-    //if Yes, insert order in order table
-    //Need to sum the line items (price * qty)
-    //foreach on line items and instear into line item table
-    //if Yes, insert order in line item table
-    //Need to sum complete total
-    //Create record in order table
-    // const newOrder = await prisma.order.create({
-    //     data: {
-    //         userId: verification.userId,
-    //         orderTotal: total
-    //     }
-    // });
-    //give positive response if completes
-    //give negative response if error
-
-    console.log("SubmitOrder has finished");
-    //CHANGE WHAT IS BEING PASSED BACK IN THE RESPONSE!!!!
-    return new Response(JSON.stringify(body));
-}
+        console.log("SubmitOrder has finished");
+        //CHANGE WHAT IS BEING PASSED BACK IN THE RESPONSE!!!!
+        return new Response(JSON.stringify(body));
+    }
 };
