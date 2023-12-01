@@ -8,10 +8,9 @@ export default function CompleteOrderForm() {
     const { data: session } = useSession();
 
     const handleCompleteOrder = async () => {
-        // You can add any additional logic or checks here before calling the action
         if (!session) {
             // Display an error message or take appropriate action
-            console.error("User not logged in.");
+            console.error("User session has been lost, please login again.");
             return;
         }
 
