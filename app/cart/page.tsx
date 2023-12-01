@@ -1,6 +1,6 @@
 import styles from '../page.module.css';
 import CartProductCard from '../components/checkout/CartProductCard';
-import CompleteOrderButton from '../components/checkout/CompleteOrderButton';
+import CompleteOrderForm from '../components/checkout/CompleteOrderForm';
 
 export default function Cart() {
 
@@ -10,7 +10,7 @@ export default function Cart() {
       <CartProductCard />
       <div>
         <p>Order Total: $XXX.XX</p>
-        <CompleteOrderButton/>
+        <CompleteOrderForm/>
       </div>
     </main>
   )
