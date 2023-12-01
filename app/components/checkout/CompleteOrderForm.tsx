@@ -20,6 +20,9 @@ export default function CompleteOrderForm() {
             const result = await completeOrderAction(session.user.accessToken, cart);
             console.log("Order submitted successfully:", result);
             // Handle the result as needed
+            console.log(result)
+            localStorage.removeItem("cart");
+            window.location = `/accounts`;
         } catch (error) {
             console.error("Error submitting order:", error);
             // Handle the error as needed

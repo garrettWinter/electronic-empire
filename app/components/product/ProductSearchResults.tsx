@@ -55,6 +55,9 @@ export default async function ProductSearchResults(params: { searchTerm: string 
                                         }).format(product.productPrice.toNumber())}</p>
                                         <AddToCartButton
                                             productId={product.productId}
+                                            productName={product.productName}
+                                            productPrice={product.productPrice}
+                                            productImage={product.productImage}
                                             qty={1}
                                         />
                                     </div>

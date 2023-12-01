@@ -13,13 +13,21 @@ export default function Cart() {
       </main>
     )
   } else {
+    console.log(cart)
+    let orderTotal = 0;
+    for (let i = 0; i < cart.length; i++) {
+      orderTotal = orderTotal + (cart[i].productPrice * cart[i].qty);
+    }
 
     return (
       <main className={styles.main}>
         <p>Shopping Cart</p>
         <CartProductCard />
         <div>
-          <p>Order Total: $XXX.XX</p>
+          <p style={{ fontSize: 16, fontWeight: 'bold' }}>Order Total: {new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD'
+          }).format(orderTotal)}</p>
           <CompleteOrderForm />
         </div>
       </main>
