@@ -21,7 +21,11 @@ export async function POST(request: Request) {
     console.log("SubmitOrder has started");
     const body: RequestBody = await request.json();
     //Validate Token
+    console.log(body.accessToken)
     let verification = verifyJwt(body.accessToken);
+    console.log("about to log verfication")
+    console.log(verification);
+
     //if no, push a failed response
     if (verification === null) {
         return new Response(JSON.stringify({ response: 'An error has occured!' }), { status: 500 })

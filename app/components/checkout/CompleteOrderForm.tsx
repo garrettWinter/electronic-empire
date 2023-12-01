@@ -1,28 +1,48 @@
 'use client'
 
 import React from "react";
-import { useEffect, useState } from "react";
 import { useSession } from 'next-auth/react';
-import CompleteOrderAction from "./CompleteOrderAction";
+import { completeOrderAction } from "../../../util/completeOrderAction";
 
 export default function CompleteOrderForm() {
     const { data: session } = useSession();
 
-    //Checking to see if user is logged in, allow user to submit order.
-    if (session === null || session === undefined) {
-        return (
-            <div>
-                <p>Need to capture user details</p>
-                <button style={{ backgroundColor: "green" }} onClick={CompleteOrderAction}>Create account and Complete Order</button>
-            </div>
-        );
-    } else {
-        //User is logged in, will just display Complete order
-        return (
-            <div>
-                <button style={{ backgroundColor: "green" }} onClick={CompleteOrderAction}>Complete Order</button>
-            </div>
-        );
+    const handleCompleteOrder = async () => {
+        // You can add any additional logic or checks here before calling the action
+        if (!session) {
+            // Display an error message or take appropriate action
+            console.error("User not logged in.");
+            return;
+        }
 
-    }
+        const cart = JSON.parse(localStorage.getItem("cart")!); //Overrid a Type Script warning about null, but this cannot be seen if cart is null.
+
+        try {
+            const result = await completeOrderAction(session.user.accessToken, cart);
+            console.log("Order submitted successfully:", result);
+            // Handle the result as needed
+        } catch (error) {
+            console.error("Error submitting order:", error);
+            // Handle the error as needed
+        }
+    };
+
+    return (
+        <div>
+            {session === null || session === undefined ? (
+                <div>
+                    <p>Need to capture user details</p>
+                    <button style={{ backgroundColor: "green" }} onClick={handleCompleteOrder}>
+                        Create account and Complete Order
+                    </button>
+                </div>
+            ) : (
+                <div>
+                    <button style={{ backgroundColor: "green" }} onClick={handleCompleteOrder}>
+                        Complete Order
+                    </button>
+                </div>
+            )}
+        </div>
+    );
 }
