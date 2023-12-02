@@ -4,9 +4,16 @@ import React from "react";
 import Image from 'next/image';
 import PlaceHolderImage from '../../../public/images/200x200-Product-Placeholder.jpg';
 
+interface Product {
+    productId: number;
+    productName: string;
+    productPrice: number;
+    qty: number;
+}
+
 export default function CartProductCard() {
     console.log("in product card");
-    let cart = JSON.parse(localStorage.getItem("cart"));
+    let cart = JSON.parse(localStorage.getItem("cart")!); //Forcing this to pass as this cannot be seen if no products in cart.
     console.log(cart)
     return (
         <div style={{
@@ -14,8 +21,10 @@ export default function CartProductCard() {
             flexDirection: 'column'
         }}>
 
-            {cart.map((product) => (
-                <div style={{
+            {cart.map((product: Product) => (
+                <div 
+                key={product.productId}
+                style={{
                     display: 'flex',
                     flexDirection: 'row',
                     padding: 5
@@ -44,7 +53,7 @@ export default function CartProductCard() {
                             flexDirection: 'row'
                         }}>
                             <p>QTY:</p>
-                            <input type='number' placeholder={product.qty}></input>
+                            <input type='number' placeholder={String(product.qty)}></input>
                             <button style={{ backgroundColor: 'red', padding: '0px 5px 0px 5px' }}>Update QTY</button>
                         </div>
                         <p style={{ fontSize: 16, fontWeight: 'bold' }}>Line Total: {new Intl.NumberFormat('en-US', {
