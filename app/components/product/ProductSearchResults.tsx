@@ -56,7 +56,7 @@ export default async function ProductSearchResults(params: { searchTerm: string 
                                         <AddToCartButton
                                             productId={product.productId}
                                             productName={product.productName}
-                                            productPrice={product.productPrice}
+                                            productPrice={Number(product.productPrice)}
                                             productImage={product.productImage}
                                             qty={1}
                                         />

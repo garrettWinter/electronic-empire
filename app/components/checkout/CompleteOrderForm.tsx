@@ -22,7 +22,7 @@ export default function CompleteOrderForm() {
             // Handle the result as needed
             console.log(result)
             localStorage.removeItem("cart");
-            window.location = `/accounts`;
+            window.location.href = `/accounts`;
         } catch (error) {
             console.error("Error submitting order:", error);
             // Handle the error as needed
