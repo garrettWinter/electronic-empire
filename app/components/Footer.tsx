@@ -1,15 +1,7 @@
-import React from "react";
-
-export default async function Footer() {
-
+export default function Footer() {
     return (
-        <footer style={{
-            width: "100%",
-            backgroundColor: "transparent",
-            position: "static",
-            bottom: 0,
-            display: 'flex',
-            justifyContent: 'center'
-        }}>No rights resevered, developed in Q4 of 2023.</footer>
-    )
-};
+        <footer className="w-full bg-transparent relative bottom-0 flex justify-center">
+            No rights reserved, developed in Q4 of 2023.
+        </footer>
+    );
+}
