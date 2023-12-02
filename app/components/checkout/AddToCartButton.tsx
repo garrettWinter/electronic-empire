@@ -1,12 +1,21 @@
 'use client'
 import React from "react";
 
-export default function AddToCartButton(parms: { productId: number, qty: number | string}) {
+export default function AddToCartButton(parms: {
+    productId: number,
+    productName: string,
+    productPrice: number,
+    productImage: string,
+    qty: number | string
+}) {
     function AddToCart() {
         console.log("In AddToCart");
         console.log(parms);
         let product = {
             productId: parms.productId,
+            productName: parms.productName,
+            productPrice: parms.productPrice,
+            productImage: parms.productImage,
             qty: parms.qty
         }
         if (localStorage.cart === null || localStorage.cart === undefined) {
@@ -15,7 +24,7 @@ export default function AddToCartButton(parms: { productId: number, qty: number 
             localStorage.setItem('cart', JSON.stringify(cart));
         } else {
             let cart = JSON.parse(localStorage.cart);
-            let search = cart.findIndex(( search: { productId: number }) => search.productId === product.productId);
+            let search = cart.findIndex((search: { productId: number }) => search.productId === product.productId);
             if (search === -1) {
                 //Product not present in Cart, adding to cart
                 console.log("Product added to cart");
