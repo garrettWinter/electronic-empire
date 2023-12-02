@@ -35,6 +35,9 @@ export default async function HeroProducts() {
                                 }).format(product.productPrice.toNumber())}</p>
                                 <AddToCartButton
                                     productId={product.productId}
+                                    productName={product.productName}
+                                    productPrice={Number(product.productPrice)}
+                                    productImage={product.productImage}
                                     qty={1}
                                 />
                             </div>

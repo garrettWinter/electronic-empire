@@ -9,7 +9,7 @@ export default function ProductDetails(params: {
         productId: number,
         productName: string,
         productDescription: string,
-        productImage:string,
+        productImage: string,
         productPrice: number,
     }
 }) {
@@ -42,6 +42,9 @@ export default function ProductDetails(params: {
                             style={{ width: '25px' }}></input>
                         <AddToCartButton
                             productId={productDetails.productId}
+                            productName={productDetails.productName}
+                            productPrice={productDetails.productPrice}
+                            productImage={productDetails.productImage}
                             qty={quantity}
                         />
                     </div>
