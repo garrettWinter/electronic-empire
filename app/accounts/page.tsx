@@ -8,11 +8,12 @@ const Account: React.FC = () => {
     const [selectedSection, setSelectedSection] = useState<string>('');
 
     return (
-        <div className="flex flex-col mt-20">
+        <div className="flex flex-col mt-40">
             <button onClick={() => setSelectedSection('profile')}>
                 User Profile
             </button>
-            <button onClick={() => setSelectedSection('orders')}>
+            <button 
+            onClick={() => setSelectedSection('orders')}>
                 Order History
             </button>
 

@@ -8,14 +8,14 @@ import SpotLightBanner2 from './components/SpotLightBanner2';
 
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <>
       <p>Home Page</p>
       <HeroBanner />
-      <div style={{ display: 'flex', flexDirection: "row", justifyContent: 'center' }}>
+      <div className="flex flex-row justify-center">
         <SpotLightBanner1 />
         <HeroProducts />
         <SpotLightBanner2 />
       </div>
-    </main>
-  )
+    </>
+  );
 }
