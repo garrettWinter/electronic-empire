@@ -12,7 +12,8 @@ const Account: React.FC = () => {
             <button onClick={() => setSelectedSection('profile')}>
                 User Profile
             </button>
-            <button onClick={() => setSelectedSection('orders')}>
+            <button 
+            onClick={() => setSelectedSection('orders')}>
                 Order History
             </button>
 
