@@ -3,6 +3,7 @@
 import React from "react";
 import Image from 'next/image';
 import PlaceHolderImage from '../../../public/images/200x200-Product-Placeholder.jpg';
+import CartDeleteProductButton from "./CartDeleteProductButton";
 
 interface Product {
     productId: number;
@@ -41,7 +42,8 @@ export default function CartProductCard() {
                             display: 'flex',
                             flexDirection: 'row'
                         }}>
-                            <button style={{ backgroundColor: 'red', padding: '0px 5px 0px 5px' }}>Delete</button>
+                            <CartDeleteProductButton
+                            productId={product.productId}/>
                             <p style={{ paddingLeft: 5 }}>{product.productName}</p>
                         </div>
                         <p style={{ fontSize: 16, fontWeight: 'bold' }}>Price: {new Intl.NumberFormat('en-US', {
