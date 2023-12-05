@@ -1,17 +1,17 @@
 import React from "react";
 
-export default function CartDeleteProductButton(productId: {productId: number}) {
+export default function CartDeleteProductButton(props: { productId: number }) {
 
     function deleteProductAction() {
         console.log("Delete Action");
-        console.log(productId.productId);
+        console.log(props.productId);
         let cart = JSON.parse(localStorage.cart);
         console.log(cart);
         let search = cart.findIndex((search: { productId: number }, index: number) => {
             console.log(search.productId);
-            console.log(productId.productId);
+            console.log(props.productId);
             search.productId == cart.productId;
-            if (search.productId == productId.productId) {
+            if (search.productId == props.productId) {
                 console.log("Match On " + index);
                 cart.splice(index, 1)
                 console.log(cart);
