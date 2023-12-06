@@ -29,7 +29,7 @@ export default function CompleteOrderForm() {
             } else {
                 window.alert("Your order has been placed. The Order ID is: " + result.orderId);
                 localStorage.removeItem("cart");
-                // window.location.href = `/accounts`;
+                window.location.href = `/accounts`;
             }
         } catch (error) {
             console.error("Error submitting order:", error);
