@@ -3,6 +3,8 @@
 import React from "react";
 import Image from 'next/image';
 import PlaceHolderImage from '../../../public/images/200x200-Product-Placeholder.jpg';
+import CartDeleteProductButton from "./CartDeleteProductButton";
+import CartUpdateQtyButton from "./CartUpdateQtyButton";
 
 interface Product {
     productId: number;
@@ -22,13 +24,13 @@ export default function CartProductCard() {
         }}>
 
             {cart.map((product: Product) => (
-                <div 
-                key={product.productId}
-                style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    padding: 5
-                }}>
+                <div
+                    key={product.productId}
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        padding: 5
+                    }}>
                     <Image
                         title={product.productName}
                         alt={product.productName}
@@ -41,7 +43,8 @@ export default function CartProductCard() {
                             display: 'flex',
                             flexDirection: 'row'
                         }}>
-                            <button style={{ backgroundColor: 'red', padding: '0px 5px 0px 5px' }}>Delete</button>
+                            <CartDeleteProductButton
+                                productId={product.productId} />
                             <p style={{ paddingLeft: 5 }}>{product.productName}</p>
                         </div>
                         <p style={{ fontSize: 16, fontWeight: 'bold' }}>Price: {new Intl.NumberFormat('en-US', {
@@ -52,9 +55,10 @@ export default function CartProductCard() {
                             display: 'flex',
                             flexDirection: 'row'
                         }}>
-                            <p>QTY:</p>
-                            <input type='number' placeholder={String(product.qty)}></input>
-                            <button style={{ backgroundColor: 'red', padding: '0px 5px 0px 5px' }}>Update QTY</button>
+                            <CartUpdateQtyButton
+                                productId={product.productId}
+                                productQty={product.qty}
+                            />
                         </div>
                         <p style={{ fontSize: 16, fontWeight: 'bold' }}>Line Total: {new Intl.NumberFormat('en-US', {
                             style: 'currency',

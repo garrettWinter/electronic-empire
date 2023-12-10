@@ -3,7 +3,6 @@ import { verifyJwt } from '../../lib/jwt';
 import prisma from '@/app/lib/prisma';
 
 interface RequestBody {
-    accessToken: string,
     products: [{
         productId: number,
         qty: number
@@ -21,14 +20,21 @@ export async function POST(request: Request) {
     console.log("SubmitOrder has started");
     const body: RequestBody = await request.json();
     //Validate Token
-    console.log(body.accessToken)
-    let verification = verifyJwt(body.accessToken);
-    console.log("about to log verfication")
+
+    let incomingToken = request.headers.get("authorization");
+    if (incomingToken === null){
+        return null
+    }
+    let cleanedToken = incomingToken.split(" ");
+    console.log(cleanedToken);
+
+    let verification = verifyJwt(cleanedToken[1]);
+    console.log("about to log verfication");
     console.log(verification);
 
     //if no, push a failed response
     if (verification === null) {
-        return new Response(JSON.stringify({ response: 'An error has occured!' }), { status: 500 })
+        return new Response(JSON.stringify({ error: 'An error has occured!' }), { status: 401 })
     } else {
         let orderTotal = 0;
         let productList: number[] = [];
@@ -47,7 +53,7 @@ export async function POST(request: Request) {
             }
         });
         if (orderedProducts.length != body.products.length) {  // Error handing if there is a mismatch of number of products being returned from query.
-            return new Response(JSON.stringify({ response: '1 or more productId(s) in the cart were unable to be found in the database' }), { status: 500 })
+            return new Response(JSON.stringify({ error: '1 or more productId(s) in the cart were unable to be found in the database' }), { status: 400 })
         }
         else {
             //Mapping the qty and lineItemPrice to the orderedProducts object
@@ -87,7 +93,7 @@ export async function POST(request: Request) {
                 console.log("Newly Created line items:");
                 console.log(createLineItem);
             };
-            return new Response(JSON.stringify(createNewOrder));
+            return new Response(JSON.stringify(createNewOrder), { status: 200 });
         }
     }
 };

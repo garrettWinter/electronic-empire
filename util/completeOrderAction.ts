@@ -4,21 +4,19 @@ export const completeOrderAction = async (accessToken: string, cart: [{
   qty: number
 }]) => {
   console.log("In completeOrderAction");
-  console.log(accessToken);
-  console.log(cart);
   try {
     const response = await fetch('/api/submitOrder', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization":"Bearer "+accessToken,
       },
       body: JSON.stringify({
-        accessToken: accessToken,
         products: cart
       })
     });
     console.log("about to log response");
-    console.log(response.body);
+    console.log(response);
 
     const data = await response.json();
     return data;
