@@ -8,13 +8,9 @@ declare module 'next-auth' {
         createdAt: Date;
         updatedAt: Date;
         accessToken: string;
-        //TODO: Remove below once session is properly working.
-        test: string;
+        accessTokenExpires: number;
     }
 
-    /**
-     * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
-     */
     export interface Session {
         user: User;
     }
@@ -23,6 +19,5 @@ declare module 'next-auth' {
         userId: string;
         username: string;
         accessToken: string;
-        // Other token fields...
     }
 }
