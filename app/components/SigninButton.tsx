@@ -8,6 +8,8 @@ const SigninButton = () => {
     if (session && session.user) {
         console.log("In SigninButton");
         console.log(session)
+        console.log("token expires in: ", session.user.accessTokenExpires - (Date.now()/1000), " seconds")
+
         return (
             <div className="flex gap-4 ml-auto">
                 <p className="text-sky-600">{session.user.username}</p>

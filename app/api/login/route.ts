@@ -1,5 +1,5 @@
 import prisma from '@/app/lib/prisma';
-import { signJwtAccessToken } from '@/app/lib/jwt';
+import { signJwtAccessToken, DEFAULT_SIGN_OPTION } from '@/app/lib/jwt';
 
 import * as bcrypt from 'bcrypt';
 
@@ -17,9 +17,11 @@ export async function POST(request: Request) {
     if (user && (await bcrypt.compare(body.password, user.password))) {
         const { password, ...userWithoutPass } = user;
         const accessToken = signJwtAccessToken(userWithoutPass);
+        const accessTokenExpires = Math.floor(Date.now()/1000) + Number(DEFAULT_SIGN_OPTION.expiresIn!)
         const result = {
             ...userWithoutPass,
             accessToken,
+            accessTokenExpires
         };
         return new Response(JSON.stringify(result));
     } else return new Response(JSON.stringify(null))

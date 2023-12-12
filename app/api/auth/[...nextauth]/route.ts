@@ -2,7 +2,6 @@ import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-
 export const authOptions = {
   providers: [
     CredentialsProvider({
@@ -65,6 +64,7 @@ export const authOptions = {
       session.user.userId = token.userId as string;
       session.user.username = token.username as string;
       session.user.accessToken = token.accessToken as string;
+      session.user.accessTokenExpires = token.accessTokenExpires as number
       return session;
     }
   }
