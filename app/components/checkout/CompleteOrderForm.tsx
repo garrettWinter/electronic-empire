@@ -1,16 +1,47 @@
 'use client'
 
-import React from "react";
+import { useRef, useEffect, useState } from "react";
 import { useSession } from 'next-auth/react';
+import { signIn } from "next-auth/react";
 import { completeOrderAction } from "../../../util/completeOrderAction";
 
 export default function CompleteOrderForm() {
     console.log("In CompleteOrderForm");
     const { data: session } = useSession();
+    const username = useRef("");
+    const pass = useRef("");
+
+    const [formSubmitted, setFormSubmitted] = useState(false);
+
+    useEffect(() => {
+        // Checks to see if the session is available and the form has been submitted, and if so attempts to complete order.
+        if (session && formSubmitted) {
+            handleCompleteOrder();
+        }
+    });
+
+    // This functiom attempts to login the user and 
+    const loginAndOrderSubmit = async () => {
+        try {
+            const result = await signIn("credentials", {
+                username: username.current,
+                password: pass.current,
+                redirect: false,
+            });
+            console.log(result);
+            // Checking to make sure login occured and if so setting FormSubmitted to true.
+            if (result?.ok === true) {
+                setFormSubmitted(true);
+            }   
+        } catch (error){
+            console.log(error)
+        }
+     
+    };
 
     let timeRemaining: number = 0;
-    if (session) {timeRemaining = session.user.accessTokenExpires - (Date.now()/1000)};
-    console.log (timeRemaining);
+    if (session) { timeRemaining = session.user.accessTokenExpires - (Date.now() / 1000) };
+    console.log(timeRemaining);
 
     const handleCompleteOrder = async () => {
         if (!session) {
@@ -36,6 +67,7 @@ export default function CompleteOrderForm() {
                 console.log("Order submitted successfully:\n", result);
                 window.alert("Your order has been placed. The Order ID is: " + result.orderId);
                 localStorage.removeItem("cart");
+                setFormSubmitted(false);
                 window.location.href = `/accounts`;
             }
         } catch (error) {
@@ -45,12 +77,26 @@ export default function CompleteOrderForm() {
 
     return (
         <div>
-            {!session || timeRemaining < 300? (
+            {!session || timeRemaining < 300 ? (
                 <div>
-                    <p>Need to capture user details</p>
-                    <button style={{ backgroundColor: "green" }} onClick={handleCompleteOrder}>
-                        Create account and Complete Order
+                    <div>
+                        <br></br>
+                        <p style={{ fontWeight: 'bold' }}>Please confirm you login details to complete the order.</p>
+                        <div>
+                            <p>User Name:</p>
+                            <input name="text" placeholder='username' onChange={(e) => (username.current = e.target.value)}></input>
+                        </div>
+                        <div>
+                            <p>Password:</p>
+                            <input name="password" type="password" placeholder='password' onChange={(e) => (pass.current = e.target.value)}></input>
+                        </div>
+                        <p> test1:123123 and test2:123123 are current test accounts (username:password).</p>
+                    </div>
+                    <button style={{ backgroundColor: "green" }} onClick={loginAndOrderSubmit}>
+                        Login and Complete Order
                     </button>
+                    <br></br><br></br>
+                    <p>If you need to create an account please <a style = {{color: 'blue', textDecoration: 'underline' }}href = '/signup'>click here</a></p>
                 </div>
             ) : (
                 <div>
